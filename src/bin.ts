@@ -10,10 +10,8 @@ program
   .requiredOption("-k, --keyFile <path>", "set google api json key file")
   .requiredOption("-p, --packageName <name>", "set package name (com.some.app)")
   .requiredOption("-a, --aabFile <path>", "set path to .aab file")
-  .requiredOption(
-    "-t, --track <track>",
-    "set track (production, beta, alpha...)"
-  )
+  .requiredOption("-t, --track <track>", "set track (production, beta, alpha...)")
+  .requiredOption("-r, --releaseName <name>", "set name for release (<versionName> (<versionCode>))")
   .option("-c, --changesNotSentForReview", "Set changesNotSentForReview flag")
   .option("-s, --status", "Set the status at the store")
   .option("-e, --exit", "exit on error with error code 1.")
@@ -26,6 +24,7 @@ publish({
   packageName: options.packageName,
   aabFile: resolve(options.aabFile),
   track: options.track,
+  releaseName: options.releaseName,
   changesNotSentForReview: options.changesNotSentForReview,
   status: options.status || 'completed'
 })

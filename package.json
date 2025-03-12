@@ -12,9 +12,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/studioLaCosaNostra/publish-aab-google-play.git"
+    "url": "https://github.com/steffenborup/publish-aab-google-play.git"
   },
-  "author": "Studio La Cosa Nostra <studiolacosanostra@gmail.com>",
+  "author": "Steffen Borup <steffen@conjugo.dk>",
   "license": "ISC",
   "keywords": [
     "aab",
