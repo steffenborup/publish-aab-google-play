@@ -1,6 +1,6 @@
 import { ReadStream, createReadStream } from "fs";
 
-import { androidpublisher_v3, google } from "googleapis";
+import { google } from "googleapis";
 
 type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
 

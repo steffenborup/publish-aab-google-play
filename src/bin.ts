@@ -27,7 +27,7 @@ publish({
   track: options.track,
   releaseName: options.releaseName,
   changesNotSentForReview: options.changesNotSentForReview,
-  releaseNotes: options.releaseNotes,
+  releaseNotes: options.releaseNotes || null,
   status: options.status || 'completed'
 })
   .then(() => {
