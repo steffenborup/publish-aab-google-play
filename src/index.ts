@@ -54,6 +54,7 @@ const setTrack = (
   packageName: string,
   track: string,
   releaseName: string,
+  releaseNotes: object,
   versionCode: string,
   status: string = "completed"
 ) =>
@@ -66,8 +67,9 @@ const setTrack = (
       releases: [
         {
           name: releaseName,
-          status: status,
-          versionCodes: [versionCode]
+          versionCodes: [versionCode],
+          releaseNotes: releaseNotes,
+          status: status
         }
       ]
     }
@@ -94,6 +96,7 @@ interface SchemaPublish {
   aabFile: string;
   track: string;
   releaseName: string;
+  releaseNotes: object;
   changesNotSentForReview: boolean
   status?: string
 }
@@ -104,6 +107,7 @@ export const publish = async ({
   aabFile,
   track,
   releaseName,
+  releaseNotes = [],
   changesNotSentForReview = false,
   status
 }: SchemaPublish) => {
@@ -126,6 +130,7 @@ export const publish = async ({
     packageName,
     track,
     releaseName,
+    releaseNotes,
     String(bundle.data.versionCode),
     status
   );
