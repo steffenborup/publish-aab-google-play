@@ -1,6 +1,6 @@
 import { ReadStream, createReadStream } from "fs";
 
-import { google } from "googleapis";
+import { androidpublisher_v3, google } from "googleapis";
 
 type ThenArg<T> = T extends PromiseLike<infer U> ? U : T;
 
@@ -54,10 +54,10 @@ const setTrack = (
   packageName: string,
   track: string,
   releaseName: string,
-  releaseNotes: object,
   versionCode: string,
+  releaseNotes: object[] = [],
   status: string = "completed"
-) =>
+) => 
   androidPublisher.edits.tracks.update({
     editId,
     track: track,
@@ -96,8 +96,8 @@ interface SchemaPublish {
   aabFile: string;
   track: string;
   releaseName: string;
-  releaseNotes: object;
   changesNotSentForReview: boolean
+  releaseNotes?: object[];
   status?: string
 }
 
@@ -107,8 +107,8 @@ export const publish = async ({
   aabFile,
   track,
   releaseName,
-  releaseNotes = [],
   changesNotSentForReview = false,
+  releaseNotes,
   status
 }: SchemaPublish) => {
   const client = await getClient(keyFile);
@@ -130,10 +130,9 @@ export const publish = async ({
     packageName,
     track,
     releaseName,
-    releaseNotes,
     String(bundle.data.versionCode),
+    releaseNotes,
     status
   );
   await commit(androidPublisher, editId, packageName, changesNotSentForReview);
 };
-

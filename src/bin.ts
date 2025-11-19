@@ -12,6 +12,7 @@ program
   .requiredOption("-a, --aabFile <path>", "set path to .aab file")
   .requiredOption("-t, --track <track>", "set track (production, beta, alpha...)")
   .requiredOption("-r, --releaseName <name>", "set name for release (<versionName> (<versionCode>))")
+  .option("-n, --releaseNotes", "set release notes")
   .option("-c, --changesNotSentForReview", "Set changesNotSentForReview flag")
   .option("-s, --status", "Set the status at the store")
   .option("-e, --exit", "exit on error with error code 1.")
@@ -26,6 +27,7 @@ publish({
   track: options.track,
   releaseName: options.releaseName,
   changesNotSentForReview: options.changesNotSentForReview,
+  releaseNotes: options.releaseNotes,
   status: options.status || 'completed'
 })
   .then(() => {
